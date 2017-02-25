@@ -5,12 +5,29 @@ lua-upstream-cache
 
 _This module is not distributed with nginx source or in the lua-nginx-module._
 
-[![Build Status](https://travis-ci.org/alticelabs/lua-upstream-cache-nginx-module.svg?branch=master)](https://travis-ci.org/alticelabs/lua-upstream-cache-nginx-module)
+Installation
+============
 
-Status
-======
+Installation for pre-compiled Nginx
+-----------------------------------
 
-This module is under development and is used in production.
+If you are using a distribution such as RHEL/CentOS, you can compile this
+module as a dynamic module. To do this, you'll need to download the Nginx source
+code first, as well as the OpenResty Nginx LUA module:
+
+* http://nginx.org/en/download.html
+* https://github.com/openresty/lua-nginx-module
+
+1. Download the Nginx source code from nginx.org.
+2. Write your configure line out for your Nginx like you normally would, but include
+the following two items (if you prefer to compile them into Nginx, change add-dynamic-module
+to with-module):
+  * `--with-compat` - required if you're using Nginx Plus
+  * `--add-dynamic-module=/path/to/lua-nginx-module`
+  * `--add-dynamic-module=/path/to/lua-upstream-cache-nginx-module`
+(NOTE: if you plan to use the pre-compiled Nginx, be sure to set your `--prefix` to something like `/opt`)
+3. `make modules` and `make modules install` to finish the compile process.
+4. Copy the resulting `.so` files that were installed into your Nginx modules dir (this will typically be `/etc/nginx/modules`).
 
 Version
 =======
